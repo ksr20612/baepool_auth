@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class userDto {
+public class UserDto {
 
     private int user_idx;
     private String user_id;
