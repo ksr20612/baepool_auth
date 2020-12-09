@@ -2,6 +2,7 @@ package com.saminboon.baepool.service;
 
 import com.saminboon.baepool.domain.User;
 import com.saminboon.baepool.domain.UserRepository;
+import com.saminboon.baepool.dto.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

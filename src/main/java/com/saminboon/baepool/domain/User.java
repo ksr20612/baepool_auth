@@ -40,9 +40,13 @@ public class User {
     private String comp_name;
     @Column(nullable = false)
     private String team_name;
+    @Column
+    private String user_token;
 
     @Builder
-    public User(String user_id, String user_passwd, String user_name, String user_mail, String user_age, String user_gender, String user_birthday, String user_birthyear, String user_phone, String user_create_time, String comp_name, String team_name) {
+
+    public User(int user_idx, String user_id, String user_passwd, String user_name, String user_mail, String user_age, String user_gender, String user_birthday, String user_birthyear, String user_phone, String user_create_time, String comp_name, String team_name, String user_token) {
+        this.user_idx = user_idx;
         this.user_id = user_id;
         this.user_passwd = user_passwd;
         this.user_name = user_name;
@@ -55,5 +59,6 @@ public class User {
         this.user_create_time = user_create_time;
         this.comp_name = comp_name;
         this.team_name = team_name;
+        this.user_token = user_token;
     }
 }

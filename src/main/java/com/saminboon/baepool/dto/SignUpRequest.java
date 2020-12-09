@@ -1,4 +1,4 @@
-package com.saminboon.baepool.service;
+package com.saminboon.baepool.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;

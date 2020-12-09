@@ -8,5 +8,5 @@ import java.util.List;
 // jpa의 구현체임; CRUD 메서드 자동 생성
 @Repository
 public interface UserRepository extends JpaRepository<User,Integer> {
-    List<User> findByUserId(String id, String pw);
+    List<User> findByUserInfo(String id, String pw);
 }
