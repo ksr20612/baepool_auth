@@ -51,6 +51,7 @@ public class UserService {
         }else{
             String token = userResults.get(0).getUser_token();
             if(token == null || token.length() == 0){
+
                 // 다시 토큰 생성
 
             }

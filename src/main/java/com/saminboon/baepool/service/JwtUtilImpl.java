@@ -16,7 +16,7 @@ public class JwtUtilImpl implements JwtUtil{
     @Value("${key}")
     private String signKey;
 
-    private Date timeExpired = new Date(System.currentTimeMillis() + 1000 * 10); // 10초후 expired
+    private Date timeExpired = new Date(System.currentTimeMillis() + 1000 * 3600 * 14); // 2주 후 expired
 
     @Override
     public String createToken() {
