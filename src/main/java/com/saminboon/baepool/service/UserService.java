@@ -4,6 +4,7 @@ import com.saminboon.baepool.domain.User;
 import com.saminboon.baepool.domain.UserRepository;
 import com.saminboon.baepool.dto.SignInRequest;
 import com.saminboon.baepool.dto.SignUpRequest;
+import com.saminboon.baepool.dto.Tokens;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class UserService {
                     .user_birthyear(signUpRequest.getUser_birthday())
                     .comp_name(signUpRequest.getComp_name())
                     .team_name(signUpRequest.getTeam_name())
-                    .user_token(jwtUtil.createToken()) // 토큰 생성해서 넣어줌
+                    .user_token(jwtUtil.createRefreshToken(signUpRequest.getUser_id())) // 토큰 생성해서 넣어줌
                     .build();
 
         if (userRepository.save(user) == null) {
@@ -42,21 +43,32 @@ public class UserService {
         }
     }
 
-    public String signIn(SignInRequest signInRequest){
+    public Tokens signIn(SignInRequest signInRequest){
 
         List<User> userResults;
+        String refreshToken;
+        String accessToken;
+
+        // refresh Token 가져오기
         userResults = userRepository.findByUserInfo(signInRequest.getUser_id(), signInRequest.getUser_passwd());
         if(userResults.isEmpty()) {
             throw new IllegalArgumentException("아이디와 비밀번호를 다시 확인해주세요");
         }else{
-            String token = userResults.get(0).getUser_token();
-            if(token == null || token.length() == 0){
+            refreshToken = userResults.get(0).getUser_token();
+            if(refreshToken == null || refreshToken.length() == 0){
 
-                // 다시 토큰 생성
+                // refreshToken이 없을 경우 다시 refreshToken 생성
 
             }
-            return token;
         }
+
+        // access Token 생성하기
+        accessToken = jwtUtil.createAccessToken(signInRequest.getUser_id());
+
+        return Tokens.builder()
+                .refreshToken(refreshToken)
+                .accessToken(accessToken)
+                .build();
     }
 
     private void checkAlreaySignUp(String user_id, String user_passwd) {
