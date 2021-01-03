@@ -26,6 +26,6 @@ public class AuthController {
 
     @GetMapping("/signIn")
     public String signIn(SignInRequest signInRequest){
-        return userService.signIn(signInRequest); // return : null -> 정보 없음
+        return userService.signIn(signInRequest); // return : null -> throw exception, o -> token 전달
     }
 }

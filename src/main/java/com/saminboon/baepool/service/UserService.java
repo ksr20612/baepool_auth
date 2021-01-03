@@ -49,7 +49,12 @@ public class UserService {
         if(userResults.isEmpty()) {
             throw new IllegalArgumentException("아이디와 비밀번호를 다시 확인해주세요");
         }else{
-            return userResults.get(0).getUser_token();
+            String token = userResults.get(0).getUser_token();
+            if(token == null || token.length() == 0){
+                // 다시 토큰 생성
+
+            }
+            return token;
         }
     }
 
