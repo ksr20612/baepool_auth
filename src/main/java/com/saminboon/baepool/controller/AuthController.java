@@ -2,6 +2,7 @@ package com.saminboon.baepool.controller;
 
 import com.saminboon.baepool.dto.SignInRequest;
 import com.saminboon.baepool.dto.SignUpRequest;
+import com.saminboon.baepool.dto.Tokens;
 import com.saminboon.baepool.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,9 @@ public class AuthController {
         return "baepool";
     }
 
+    @GetMapping("/join")
+    public String join() { return "join"; }
+
     @GetMapping("/signUp")
     public String signUp(SignUpRequest signUpRequest){
         userService.signUp(signUpRequest);
@@ -25,7 +29,7 @@ public class AuthController {
     }
 
     @GetMapping("/signIn")
-    public String signIn(SignInRequest signInRequest){
+    public Tokens signIn(SignInRequest signInRequest){
         return userService.signIn(signInRequest); // return : null -> throw exception, o -> token 전달
     }
 }

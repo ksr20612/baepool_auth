@@ -20,9 +20,12 @@ public class SignUpRequest {
     private String user_create_time;
     private String comp_name;
     private String team_name;
+    private String user_token;
+    private String user_img;
+    private String user_role;
 
     @Builder
-    public SignUpRequest(String user_id, String user_passwd, String user_name, String user_mail, String user_age, String user_gender, String user_birthday, String user_phone, String user_create_time, String comp_name, String team_name) {
+    public SignUpRequest(String user_id, String user_passwd, String user_name, String user_mail, String user_age, String user_gender, String user_birthday, String user_phone, String user_create_time, String comp_name, String team_name, String user_token, String user_img, String user_role) {
         this.user_id = user_id;
         this.user_passwd = user_passwd;
         this.user_name = user_name;
@@ -34,5 +37,8 @@ public class SignUpRequest {
         this.user_create_time = user_create_time;
         this.comp_name = comp_name;
         this.team_name = team_name;
+        this.user_token = user_token;
+        this.user_img = user_img;
+        this.user_role = user_role;
     }
 }

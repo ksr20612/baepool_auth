@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Map;
 
 @Component
-@PropertySource("classPath:key.properties")
+@PropertySource("classpath:/key.properties")
 public class JwtUtilImpl implements JwtUtil{
 
     @Value("${key}")
