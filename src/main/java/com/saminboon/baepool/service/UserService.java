@@ -24,18 +24,20 @@ public class UserService {
         checkAlreaySignUp(signUpRequest.getUser_id(), signUpRequest.getUser_passwd());
 
         User user = User.builder()
-                    .user_id(signUpRequest.getUser_id())
-                    .user_passwd(signUpRequest.getUser_passwd())
-                    .user_age(signUpRequest.getUser_age())
-                    .user_birthday(signUpRequest.getUser_birthday())
-                    .user_gender(signUpRequest.getUser_gender())
-                    .user_mail(signUpRequest.getUser_mail())
-                    .user_name(signUpRequest.getUser_name())
-                    .user_phone(signUpRequest.getUser_phone())
-                    .user_birthyear(signUpRequest.getUser_birthday())
-                    .comp_name(signUpRequest.getComp_name())
-                    .team_name(signUpRequest.getTeam_name())
-                    .user_token(jwtUtil.createRefreshToken(signUpRequest.getUser_id())) // 토큰 생성해서 넣어줌
+                    .userId(signUpRequest.getUser_id())
+                    .userPasswd(signUpRequest.getUser_passwd())
+                    .userAge(signUpRequest.getUser_age())
+                    .userBirthday(signUpRequest.getUser_birthday())
+                    .userGender(signUpRequest.getUser_gender())
+                    .userMail(signUpRequest.getUser_mail())
+                    .userName(signUpRequest.getUser_name())
+                    .userPhone(signUpRequest.getUser_phone())
+                    .userBirthyear(signUpRequest.getUser_birthday())
+                    .compName(signUpRequest.getComp_name())
+                    .teamName(signUpRequest.getTeam_name())
+                    .userToken(jwtUtil.createRefreshToken(signUpRequest.getUser_id())) // 토큰 생성해서 넣어줌
+                    .userImg(signUpRequest.getUser_img())
+                    .userRole(signUpRequest.getUser_role())
                     .build();
 
         if (userRepository.save(user) == null) {
@@ -50,11 +52,11 @@ public class UserService {
         String accessToken;
 
         // refresh Token 가져오기
-        userResults = userRepository.findByUserInfo(signInRequest.getUser_id(), signInRequest.getUser_passwd());
+        userResults = userRepository.findAllByUserIdAndUserPasswd(signInRequest.getUser_id(), signInRequest.getUser_passwd());
         if(userResults.isEmpty()) {
-            throw new IllegalArgumentException("아이디와 비밀번호를 다시 확인해주세요");
+            throw new IllegalArgumentException("NO id and Passwd matching");
         }else{
-            refreshToken = userResults.get(0).getUser_token();
+            refreshToken = userResults.get(0).getUserToken();
             if(refreshToken == null || refreshToken.length() == 0){
 
                 // refreshToken이 없을 경우 다시 refreshToken 생성
@@ -72,7 +74,7 @@ public class UserService {
     }
 
     private void checkAlreaySignUp(String user_id, String user_passwd) {
-        if(userRepository.findByUserInfo(user_id,user_passwd) != null){
+        if(userRepository.findAllByUserIdAndUserPasswd(user_id,user_passwd) != null){
             throw new IllegalArgumentException("이미 가입된 사용자입니다.");
         }
     }

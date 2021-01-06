@@ -14,56 +14,56 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int user_idx;
+    private int userIdx;
 
-    @Column(nullable = false)
-    private String user_id;
-    @Column(nullable = false)
-    private String user_passwd;
-    @Column
-    private String user_name;
-    @Column
-    private String user_mail;
-    @Column
-    private String user_age;
-    @Column
-    private String user_gender;
-    @Column
-    private String user_birthday;
-    @Column
-    private String user_birthyear;
-    @Column
-    private String user_phone;
-    @Column
-    private String user_create_time;
-    @Column(nullable = false)
-    private String comp_name;
-    @Column(nullable = false)
-    private String team_name;
-    @Column
-    private String user_token;
-    @Column
-    private String user_img;
-    @Column
-    private String user_role;
+    @Column(name = "user_id")
+    private String userId;
+    @Column(name = "user_passwd")
+    private String userPasswd;
+    @Column(name = "user_name")
+    private String userName;
+    @Column(name = "user_mail")
+    private String userMail;
+    @Column(name = "user_age")
+    private String userAge;
+    @Column(name = "user_gender")
+    private String userGender;
+    @Column(name = "user_birthday")
+    private String userBirthday;
+    @Column(name = "user_birthyear")
+    private String userBirthyear;
+    @Column(name = "user_phone")
+    private String userPhone;
+    @Column(name = "user_create_time")
+    private String userCreateTime;
+    @Column(name = "comp_name")
+    private String compName;
+    @Column(name = "team_name")
+    private String teamName;
+    @Column(name = "user_token")
+    private String userToken;
+    @Column(name = "user_img")
+    private String userImg;
+    @Column(name = "user_role")
+    private String userRole;
 
     @Builder
-    public User(int user_idx, String user_id, String user_passwd, String user_name, String user_mail, String user_age, String user_gender, String user_birthday, String user_birthyear, String user_phone, String user_create_time, String comp_name, String team_name, String user_token, String user_img, String user_role) {
-        this.user_idx = user_idx;
-        this.user_id = user_id;
-        this.user_passwd = user_passwd;
-        this.user_name = user_name;
-        this.user_mail = user_mail;
-        this.user_age = user_age;
-        this.user_gender = user_gender;
-        this.user_birthday = user_birthday;
-        this.user_birthyear = user_birthyear;
-        this.user_phone = user_phone;
-        this.user_create_time = user_create_time;
-        this.comp_name = comp_name;
-        this.team_name = team_name;
-        this.user_token = user_token;
-        this.user_img = user_img;
-        this.user_role = user_role;
+    public User(int userIdx, String userId, String userPasswd, String userName, String userMail, String userAge, String userGender, String userBirthday, String userBirthyear, String userPhone, String userCreateTime, String compName, String teamName, String userToken, String userImg, String userRole) {
+        this.userIdx = userIdx;
+        this.userId = userId;
+        this.userPasswd = userPasswd;
+        this.userName = userName;
+        this.userMail = userMail;
+        this.userAge = userAge;
+        this.userGender = userGender;
+        this.userBirthday = userBirthday;
+        this.userBirthyear = userBirthyear;
+        this.userPhone = userPhone;
+        this.userCreateTime = userCreateTime;
+        this.compName = compName;
+        this.teamName = teamName;
+        this.userToken = userToken;
+        this.userImg = userImg;
+        this.userRole = userRole;
     }
 }

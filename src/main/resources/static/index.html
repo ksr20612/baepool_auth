@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>MediaRecorder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="WebRTC getUserMedia MediaRecorder API">
+    <!--<link rel="stylesheet" href="//dev.ctsoft.kr/mediazen-rec/css/reset.css">
+    <link rel="stylesheet" href="//dev.ctsoft.kr/mediazen-rec/css/login.css">-->
+      <link rel="stylesheet" href="./css/reset.css">
+      <link rel="stylesheet" href="./css/login.css">
+  </head>
+  <body>
+
+
+    <header>
+        <!--<img src="//dev.ctsoft.kr/mediazen-rec/images/mediazen_logo1.png" alt="logo" />-->
+        <img src="/img/mediazen_logo1.png" alt="logo" />
+    </header>
+
+    <div id="contents">
+
+        <div id="inner">
+            <div id="login_wrap">
+				<div class="inner">
+					<h2>로그인 테스트</h2>
+					<input type="text" name="username" id="username" placeholder="아이디"/>
+					<input type="password" name="userauth" id="userauth" placeholder="암호"/>
+          <div class="sign_btn" id="login_btn">로그인</div>
+          <div class="sign_btn" id="signUp_btn">회원가입</div>
+				</div>
+            </div>
+
+
+            <div id="login_bg">
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+		<img id="contact" src="/img/contact_us.png">
+    </footer>
+
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+        var $$username = $("#username"),
+                $$userauth = $("#userauth"),
+                $$authcheck = $("#login_btn");
+                $$signUp = $("#signUp_btn");
+        $$username.focus();
+
+        $$authcheck.click(
+                function(event) {
+
+                  var id = $$username.val();
+                  var passwd = $$userauth.val();
+
+                  var paramData = {
+                    "user_id"  : $$username.val(),
+                    "user_passwd": $$userauth.val()
+                  };
+
+                  window.location.href="/signIn?user_id="+encodeURI(id)+"&user_passwd="+encodeURI(passwd);
+                }
+        );
+
+        $$signUp.click(
+            function(event){
+                window.location.href="/join";
+            }
+        )
+
+      });
+    </script>
+  </body>
+</html>

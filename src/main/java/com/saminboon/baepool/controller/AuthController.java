@@ -5,22 +5,26 @@ import com.saminboon.baepool.dto.SignUpRequest;
 import com.saminboon.baepool.dto.Tokens;
 import com.saminboon.baepool.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class AuthController {
 
     @Autowired
     public UserService userService;
 
-    @GetMapping("/baepool")
+    @RequestMapping(value="/baepool")
     public String baepool(){
-        return "baepool";
+        return "index.html";
     }
 
-    @GetMapping("/join")
-    public String join() { return "join"; }
+    @RequestMapping(value="/join")
+    public String join() {
+        return "information.html";
+    }
 
     @GetMapping("/signUp")
     public String signUp(SignUpRequest signUpRequest){
