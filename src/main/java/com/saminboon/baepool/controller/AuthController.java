@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
@@ -26,14 +27,18 @@ public class AuthController {
         return "information.html";
     }
 
+    @ResponseBody
     @GetMapping("/signUp")
     public String signUp(SignUpRequest signUpRequest){
         userService.signUp(signUpRequest);
         return "Baepool의 회원이 되신 것을 환영합니다.";
     }
 
+    @ResponseBody
     @GetMapping("/signIn")
     public Tokens signIn(SignInRequest signInRequest){
-        return userService.signIn(signInRequest); // return : null -> throw exception, o -> token 전달
+        Tokens tokens = userService.signIn(signInRequest); // return : null -> throw exception, o -> token 전달
+        System.out.println("access Token: " + tokens.getAccessToken());
+        return tokens;
     }
 }
